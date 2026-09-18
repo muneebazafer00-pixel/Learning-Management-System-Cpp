@@ -1,6 +1,3 @@
-# Learning-Management-System-Cpp
-A simple OOP-based Learning Management System built in C++ for university project.
-
 # Learning Management System (C++)
 
 A simple OOP-based Learning Management System built in C++ for a university project.  
