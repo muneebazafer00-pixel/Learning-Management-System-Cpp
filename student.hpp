@@ -9,11 +9,12 @@
 class Student : public User {
 private:
     vector<string> enrolledCourses;
-    vector<int> assignmentMarks;   // NEW: store marks
-    int attendance;                // NEW: store attendance percentage
+    vector<int> assignmentMarks;   // store marks
+    int attendance;                // store attendance percentage
+    string department; 
 
 public:
-    Student(string id = "", string name = "", string email = "");
+    Student(string id = "", string name = "", string email = "", string dept = "");
 
     void enrollCourse(string courseName);
     void viewDashboard() override;
@@ -24,6 +25,9 @@ public:
 
     void setAttendance(int percent);
     int getAttendance() const;
+
+   void setDepartment(string dept);
+   string getDepartment() const;
 };
 
 #endif
