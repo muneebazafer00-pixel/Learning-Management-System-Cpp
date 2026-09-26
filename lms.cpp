@@ -1,4 +1,4 @@
-// LMS.cpp
+
 #include "LMS.hpp"
 #include <iostream>
 using namespace std;
@@ -15,12 +15,13 @@ void LMS::displayAll() {
     if (students.empty())
         cout << "No students added yet.\n";
     else {
-        for (auto &s : students) {
-            cout << "- ID: " << s.getID()
-                 << ", Name: " << s.getName()
-                 << ", Email: " << s.getEmail() << endl;
-            cout << "  Attendance: " << s.getAttendance() << "%" << endl;
-            cout << "  Marks: ";
+        for (const auto &s : students) {
+            cout << "- ID: " << s.getID() << endl 
+                 << " Name: " << s.getName() << endl
+                 << " Email: " << s.getEmail() << endl;
+            cout << " Department: " << s.getDepartment() << endl; //  show department
+            cout << " Attendance: " << s.getAttendance() << "%" << endl;
+            cout << " Marks out of 100 : ";
             for (int m : s.getMarks()) cout << m << " ";
             cout << endl;
         }
@@ -30,10 +31,10 @@ void LMS::displayAll() {
     if (instructors.empty())
         cout << "No instructors added yet.\n";
     else {
-        for (auto &i : instructors) {
-            cout << "- ID: " << i.getID()
-                 << ", Name: " << i.getName()
-                 << ", Email: " << i.getEmail() << endl;
+        for (const auto &i : instructors) {
+            cout << "- ID: " << i.getID() << endl
+                 << " Name: " << i.getName() << endl
+                 << " Email: " << i.getEmail() << endl;
         }
     }
 
@@ -41,12 +42,11 @@ void LMS::displayAll() {
     if (courses.empty())
         cout << "No courses added yet.\n";
     else {
-        for (auto &c : courses)
+        for (const auto &c : courses)
             c.displayCourse();
     }
     }
 
-// NEW: record marks for a specific student
 void LMS::recordMarks(string studentId, int marks) {
     for (auto &student : students) {
         if (student.getID() == studentId) {
@@ -58,14 +58,6 @@ void LMS::recordMarks(string studentId, int marks) {
     cout << "Student not found!\n";
 }
 
-// NEW: record attendance for a specific student
-void LMS::recordAttendance(string studentId, int percent) {
-    for (auto &student : students) {
-        if (student.getID() == studentId) {
-            student.setAttendance(percent);
-            cout << "Attendance recorded for " << student.getName() << endl;
-            return;
-        }
-    }
-    cout << "Student not found!\n";
-}
+// record attendance for a specific student
+
+
