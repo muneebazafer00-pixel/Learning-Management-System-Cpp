@@ -9,43 +9,51 @@ int main() {
 
     do {
         showMenu();
-        std::cout << "Enter choice: ";
+        cout << "Enter choice: ";
         cin >> choice;
         cin.ignore();
 
-        if (choice == 1) {
-            string id = getInput("Enter Student ID: ");
-            string name = getInput("Enter Student Name: ");
-            string email = getInput("Enter Student Email: ");
-            int attendance;
-            std::cout << "Enter Attendance Percentage: ";
-            std::cin >> attendance;
-            std::cin.ignore();
+        if (choice == 1) { 
+    string id = getInput("Enter Student ID: ");
+    string name = getInput("Enter Student Name: ");
+    string email = getInput("Enter Student Email: ");
+    string dept = getInput("Enter Student Department: "); 
+    int attendance, marks;
 
-            Student s(id, name, email);
-            s.setAttendance(attendance); // NEW: set attendance while adding student
-            system.addStudent(s);
-        } else if (choice == 2) {
-            string id = getInput("Enter Instructor ID: ");
-            string name = getInput("Enter Instructor Name: ");
-            string email = getInput("Enter Instructor Email: ");
-            system.addInstructor(Instructor(id, name, email));
-        } else if (choice == 3) {
+    cout << "Enter Attendance Percentage: ";
+    cin >> attendance;
+    cin.ignore();
+
+    cout << "Enter Obtained Marks: ";
+    cin >> marks;
+    cin.ignore();
+
+    Student s(id, name, email, dept); //  pass dept
+    s.setAttendance(attendance);
+    s.addMarks(marks);
+    system.addStudent(s);
+
+    cout << "Student added successfully with department, marks, and attendance!\n";
+        } 
+        else if (choice == 2) {
+            string id = getInput("Enter Instructor(your) ID: ");
+            string name = getInput("Enter Instructor(your) Name: ");
+            string email = getInput("Enter Instructor(your) Email: ");
+            Instructor i(id, name, email);
+            system.addInstructor(i);
+            i.viewDashboard();
+        } 
+        else if (choice == 3) {
             string id = getInput("Enter Course ID: ");
             string name = getInput("Enter Course Name: ");
             system.addCourse(Course(id, name));
-        } else if (choice == 4) {
-            string studentId = getInput("Enter Student ID: ");
-            int marks;
-            std::cout << "Enter Obtained Marks: ";
-            std::cin >> marks;
-            std::cin.ignore();
-            system.recordMarks(studentId, marks); // link marks to student
-        } else if (choice == 5) {
+        } 
+        else if (choice == 4) {
             system.displayAll();
-            std::cout << "\nPress Enter to continue...";
-            std::cin.get(); // waits for Enter key
-        } else if (choice == 6) {
+            cout << "\nPress Enter to continue...";
+            cin.get();
+        } 
+        else if (choice == 5) {
             char confirm;
             cout << "\nAre you sure you want to exit?\n";
             cout << "Warning: Your entered data will be erased!\n";
@@ -53,10 +61,10 @@ int main() {
             cin >> confirm;
 
             if (confirm == 'Y' || confirm == 'y') {
-                cout << "Exiting LMS(^_^) Goodbye!\n";
-                break; // exit loop
+                cout << "Exiting LMS ~(^_^)~ Goodbye!\n";
+                break;
             } else {
-                choice = 0; // reset choice so loop continues
+                choice = 0;
             }
         }
 
@@ -64,8 +72,3 @@ int main() {
 
     return 0;
 }
-
-
-//g++ -std=c++11 test/main.cpp src/*.cpp -I header -o oop
-
-
